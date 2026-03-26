@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="vi">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Đồ họa Fractal với WebGL</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 20px;
+				text-align: center;
+			}
+			.controls {
+				margin-bottom: 20px;
+				padding: 15px;
+				background-color: #f4f4f4;
+				border-radius: 8px;
+				display: inline-block;
+			}
+			canvas {
+				border: 1px solid #333;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			}
+			label,
+			select,
+			input,
+			button {
+				margin: 0 10px;
+				font-size: 16px;
+			}
+			button {
+				padding: 5px 15px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Bài tập lớn: Đồ họa Fractal (WebGL)</h1>
+
+		<div class="controls">
+			<label for="fractalType">Chọn Fractal:</label>
+			<select id="fractalType">
+				<option value="koch">Bông tuyết Koch (Snowflake)</option>
+				<option value="minkowski">Đảo Minkowski</option>
+				<option value="sierpinski_triangle">Tam giác Sierpinski</option>
+				<option value="sierpinski_carpet">
+					Hình vuông Sierpinski (Carpet)
+				</option>
+			</select>
+
+			<label for="iterationN">Bước lặp (N):</label>
+			<input
+				type="number"
+				id="iterationN"
+				value="3"
+				min="0"
+				max="10"
+				style="width: 60px"
+			/>
+
+			<button id="drawBtn">Vẽ Hình</button>
+		</div>
+
+		<br />
+		<canvas id="glcanvas" width="600" height="600"></canvas>
+
+		<script src="scripts.js"></script>
+	</body>
+</html>
+1
