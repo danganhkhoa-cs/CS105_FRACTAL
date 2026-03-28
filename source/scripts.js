@@ -56,11 +56,19 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Xóa màn hình lần đầu khi tải trang
 	clearCanvas();
 
+	const iterationInput = document.getElementById("iterationN");
+	const iterationValue = document.getElementById("iterationNValue");
+
+	// Hiển thị giá trị N theo thời gian thực khi kéo thanh trượt
+	iterationInput.addEventListener("input", () => {
+		iterationValue.textContent = iterationInput.value;
+	});
+
 	// 2. Lắng nghe sự kiện click vào nút "Vẽ Hình"
 	document.getElementById("drawBtn").addEventListener("click", () => {
 		// Lấy giá trị từ UI
 		const type = document.getElementById("fractalType").value;
-		const n = parseInt(document.getElementById("iterationN").value, 10);
+		const n = parseInt(iterationInput.value, 10);
 
 		// Kiểm tra hợp lệ
 		if (isNaN(n) || n < 0) {

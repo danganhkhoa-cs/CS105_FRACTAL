@@ -50,13 +50,15 @@
 
 			<label for="iterationN">Bước lặp (N):</label>
 			<input
-				type="number"
+				type="range"
 				id="iterationN"
 				value="3"
 				min="0"
 				max="10"
-				style="width: 60px"
+				step="1"
+				style="width: 180px"
 			/>
+			<span id="iterationNValue">3</span>
 
 			<button id="drawBtn">Vẽ Hình</button>
 		</div>
