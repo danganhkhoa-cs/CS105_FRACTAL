@@ -1,6 +1,4 @@
 export function drawMinkowskiIsland(gl, n) {
-	//console.log(`Đang chạy Minkowski với N = ${n}`);
-	//console.log("program:", gl.program);
 	function generate(points) {
 		let newPoints = [];
 
@@ -31,13 +29,13 @@ export function drawMinkowskiIsland(gl, n) {
 		return newPoints;
 	}
 
-	// 🔥 Bắt đầu từ hình vuông (ISLAND)
+	// Bắt đầu từ hình vuông (ISLAND)
 	let points = [
 		{ x: -0.5, y: -0.5 },
-		{ x:  0.5, y: -0.5 },
-		{ x:  0.5, y:  0.5 },
-		{ x: -0.5, y:  0.5 },
-		{ x: -0.5, y: -0.5 }
+		{ x: 0.5, y: -0.5 },
+		{ x: 0.5, y: 0.5 },
+		{ x: -0.5, y: 0.5 },
+		{ x: -0.5, y: -0.5 },
 	];
 
 	for (let i = 0; i < n; i++) {
@@ -61,6 +59,5 @@ export function drawMinkowskiIsland(gl, n) {
 
 	gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
 
-	// 🔥 QUAN TRỌNG
 	gl.drawArrays(gl.LINE_STRIP, 0, points.length);
 }
