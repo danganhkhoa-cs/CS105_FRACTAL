@@ -1,7 +1,7 @@
-// import { drawKochSnowFlake } from "./drawKochSnowFlake.js";
+import { drawKochSnowFlake } from "./drawKochSnowFlake.js";
 import { drawMinkowskiIsland } from "./drawMinkowskiIsland.js";
-// import { drawSierpinskiTriangle } from "./drawSierpinskiTriangle.js";
-// import { drawSierpinskiCarpet } from "./drawSierpinskiCarpet.js";
+import { drawSierpinskiTriangle } from "./drawSierpinskiTriangle.js";
+import { drawSierpinskiCarpet } from "./drawSierpinskiCarpet.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 	// 1. Lấy canvas và khởi tạo WebGL context
@@ -39,11 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	gl.attachShader(program, fs);
 	gl.linkProgram(program);
 
-	// 🔥 QUAN TRỌNG NHẤT
 	gl.useProgram(program);
 	gl.program = program;
 	if (!gl) {
-		alert("Trình duyệt của bạn không hỗ trợ WebGL!");
+		alert("Trình duyệt của bạn không hỗ trợ WebGL");
 		return;
 	}
 
@@ -56,22 +55,21 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Xóa màn hình lần đầu khi tải trang
 	clearCanvas();
 
-	// 2. Lắng nghe sự kiện click vào nút "Vẽ Hình"
-	document.getElementById("drawBtn").addEventListener("click", () => {
-		// Lấy giá trị từ UI
-		const type = document.getElementById("fractalType").value;
-		const n = parseInt(document.getElementById("iterationN").value, 10);
+	const fractalTypeSelect = document.getElementById("fractalType");
+	const iterationInput = document.getElementById("iterationN");
+	const iterationValue = document.getElementById("iterationNValue");
 
-		// Kiểm tra hợp lệ
+	function renderFractal() {
+		const type = fractalTypeSelect.value;
+		const n = parseInt(iterationInput.value, 10);
+
 		if (isNaN(n) || n < 0) {
 			alert("Vui lòng nhập N là một số nguyên không âm!");
 			return;
 		}
 
-		// Xóa hình cũ trước khi vẽ hình mới
 		clearCanvas();
 
-		// 3. Phân luồng chạy thuật toán dựa vào select
 		switch (type) {
 			case "koch":
 				drawKochSnowFlake(gl, n);
@@ -88,5 +86,23 @@ document.addEventListener("DOMContentLoaded", () => {
 			default:
 				console.error("Loại fractal không được hỗ trợ.");
 		}
+	}
+
+	// Lắng nghe giá trị của thanh trượt và vẽ
+	iterationInput.addEventListener("input", () => {
+		iterationValue.textContent = iterationInput.value;
+		renderFractal();
 	});
+
+	// Khi đổi loại fractal: đặt mặc định N = 0 và vẽ ngay.
+	fractalTypeSelect.addEventListener("change", () => {
+		iterationInput.value = "0";
+		iterationValue.textContent = "0";
+		renderFractal();
+	});
+
+	// Vẽ mặc định ban đầu tại N = 0.
+	iterationInput.value = "0";
+	iterationValue.textContent = "0";
+	renderFractal();
 });
