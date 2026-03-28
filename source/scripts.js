@@ -73,18 +73,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		// 3. Phân luồng chạy thuật toán dựa vào select
 		switch (type) {
-			// case "koch":
-			// 	drawKochSnowFlake(gl, n);
-			// 	break;
+			case "koch":
+				drawKochSnowFlake(gl, n);
+				break;
 			case "minkowski":
 				drawMinkowskiIsland(gl, n);
 				break;
-			// case "sierpinski_triangle":
-			// 	drawSierpinskiTriangle(gl, n);
-			// 	break;
-			// case "sierpinski_carpet":
-			// 	drawSierpinskiCarpet(gl, n);
-			// 	break;
+			case "sierpinski_triangle":
+				drawSierpinskiTriangle(gl, n);
+				break;
+			case "sierpinski_carpet":
+				drawSierpinskiCarpet(gl, n);
+				break;
 			default:
 				console.error("Loại fractal không được hỗ trợ.");
 		}
