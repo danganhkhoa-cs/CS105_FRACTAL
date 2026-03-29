@@ -26,7 +26,7 @@ export function drawKochSnowFlake(gl, n) {
 			newPoints.push(B);
 		}
 
-		newPoints.push(points[points.length - 1]); // giữ điểm cuối
+		newPoints.push(points[points.length - 1]);
 		return newPoints;
 	}
 
@@ -46,7 +46,6 @@ export function drawKochSnowFlake(gl, n) {
 		points = koch(points);
 	}
 
-	// ===== convert sang vertices =====
 	let vertices = [];
 	for (let i = 0; i < points.length; i++) {
 		vertices.push(points[i].x, points[i].y);
@@ -60,7 +59,5 @@ export function drawKochSnowFlake(gl, n) {
 	let pos = gl.getAttribLocation(gl.program, "a_position");
 	gl.enableVertexAttribArray(pos);
 	gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
-
-	// 🔥 giống cách bạn làm Sierpinski
 	gl.drawArrays(gl.LINE_STRIP, 0, vertices.length / 2);
 }
